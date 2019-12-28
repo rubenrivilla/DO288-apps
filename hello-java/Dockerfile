@@ -5,6 +5,11 @@ MAINTAINER   Red Hat Training <training@redhat.com>
 # command line options to pass to the JVM
 ENV	  JAVA_OPTIONS -Xmx512m
 
+# labels
+LABEL io.k8s.description="Lab design-container" \ 
+      io.k8s.display-name="Lab design-container" \ 
+      io.openshift.expose-services="8080:http" \ 
+      io.openshift.tags="java, thorntail"
 
 # Install the Java runtime, create a user for running the app, and set permissions
 RUN   yum install -y --disableplugin=subscription-manager java-1.8.0-openjdk-headless && \
@@ -17,12 +22,12 @@ ADD   https://github.com/RedHatTraining/DO288-apps/releases/download/OCP-4.1-1/h
 
 COPY  run-app.sh /opt/app-root/bin/
 
-RUN   chown -R wildfly:wildfly /opt/app-root && \
-      chmod -R 700 /opt/app-root
+RUN   chgrp -R 0 /opt/app-root && \
+      chmod -R g=u /opt/app-root
 
 EXPOSE 8080
 
-USER  wildfly
+USER  1001
 
 # Run the fat JAR
 CMD   /opt/app-root/bin/run-app.sh
