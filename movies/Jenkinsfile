@@ -10,8 +10,8 @@ pipeline {
     }
 
     environment {
-        DEV_PROJECT = "rubenrivilla-gmv-com-movies-dev"
-        STAGE_PROJECT = "rubenrivilla-gmv-com-movies-stage"
+        DEV_PROJECT = "rrivilla-gmv-com-movies-dev"
+        STAGE_PROJECT = "rrivilla-gmv-com-movies-stage"
         APP_GIT_URL = "https://github.com/rubenrivilla/DO288-apps"
         NEXUS_SERVER = "http://nexus-common.apps.ocp-eu1.prod.nextcle.com/repository/java"
 
